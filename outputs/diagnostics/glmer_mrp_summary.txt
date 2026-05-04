@@ -1,0 +1,59 @@
+GLMER-MRP — Diagnostic Summary
+=======================================================
+
+Outcome variable: happening_bin
+Likelihood: bernoulli_logit (Laplace approximation)
+Grouping variables: ['race4', 'educ_category', 'gender', 'region9', 'state_fips']
+Fixed effects: intercept + ['co2_per_capita', 'dem_share_two_party', 'drive_alone_share', 'samesex_share']
+Observations: 778
+
+Convergence warnings: none
+
+Random Effect Variance Components:
+  race4                 variance = 0.000000
+  educ_category         variance = 0.000000
+  gender                variance = 0.000038
+  region9               variance = 0.000000
+  state_fips            variance = 0.000000
+
+Fixed Effect Coefficients:
+  intercept             estimate = 2.132641
+  co2_per_capita        estimate = -0.009125
+  dem_share_two_party   estimate = -1.171803
+  drive_alone_share     estimate = -1.661910
+  samesex_share         estimate = -13.914372
+
+Full gpboost summary:
+=====================================================
+Model summary:
+Nb. observations: 778
+Nb. groups: 4 (Group_1), 4 (Group_2), 2 (Group_3), 9 (Group_4), 51 (Group_5)
+ Log-lik    AIC     BIC
+ -537.05 1094.1 1140.66
+-----------------------------------------------------
+Covariance parameters (random effects):
+         Param.
+Group_1     0.0
+Group_2     0.0
+Group_3     0.0
+Group_4     0.0
+Group_5     0.0
+-----------------------------------------------------
+Linear regression coefficients (fixed effects):
+              Param.  Std. err.  z value  P(>|z|)
+Covariate_1   2.1326     1.6061   1.3278   0.1842
+Covariate_2  -0.0091     0.0061  -1.4899   0.1362
+Covariate_3  -1.1718     1.3828  -0.8474   0.3968
+Covariate_4  -1.6619     1.5586  -1.0663   0.2863
+Covariate_5 -13.9144    41.4866  -0.3354   0.7373
+=====================================================
+
+State Estimate Summary:
+  Mean:   0.5204
+  Median: 0.5243
+  Min:    0.3988
+  Max:    0.6048
+  Std:    0.0340
+
+Comparison vs. Baseline:
+  States where |GLMER − Baseline| > 0.10: 20 / 51

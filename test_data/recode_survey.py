@@ -12,8 +12,10 @@ Outcomes: all 30 opinion variables recoded to binary 0/1.
 import pandas as pd
 import numpy as np
 
-RAW = '/Users/carmenk/Documents/GitHub/MRdeeP-Deep-Learning-MRP/test_data/raw/climate_survey_responses.csv'
-OUT = '/Users/carmenk/Documents/GitHub/MRdeeP-Deep-Learning-MRP/test_data/processed/climate_survey_responses_recoded.csv'
+import os
+_HERE = os.path.dirname(os.path.abspath(__file__))
+RAW = os.path.join(_HERE, 'raw', 'climate_survey_responses.csv')
+OUT = os.path.join(_HERE, 'processed', 'climate_survey_responses_recoded.csv')
 
 df = pd.read_csv(RAW)
 
