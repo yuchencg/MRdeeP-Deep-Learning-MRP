@@ -1,0 +1,7 @@
+model_id,label,description
+baseline,"Baseline (raw means)","Naive state-level survey averages, no modeling"
+glm_mrp,"GLM-MRP","Logistic regression with state fixed effects, poststratified"
+glmer_mrp,"GLMER-MRP","Mixed-effects logistic regression with random intercepts, poststratified"
+stan_mrp,"Stan-MRP","Bayesian multilevel regression and poststratification"
+srp,"SRP","Super Learner ensemble + poststratification"
+mrdeep,"MRdeeP","Deep-learning MRP (autoencoder + deep regression)"
