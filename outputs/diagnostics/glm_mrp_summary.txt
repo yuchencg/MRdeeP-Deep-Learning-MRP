@@ -1,53 +1,39 @@
 GLM-MRP — Diagnostic Summary
 =======================================================
 
-Outcome variable: happening_bin
-Formula: happening_bin ~ C(gender) + C(race4) + C(educ_category) + C(region9) + co2_per_capita + dem_share_two_party + drive_alone_share + samesex_share
-Observations: 778
-Pseudo R-squared (McFadden): 0.0115
+Formula: happening_bin ~ C(gender) + C(race4) + C(educ_category) + co2_per_capita + dem_share_two_party + pct_drive_alone + pct_samesex_hh
+Observations: 1010
+AIC: 1261.37
+Pseudo R² (McFadden): 0.0214
 
 Convergence warnings: none
 
-Model Summary:
                  Generalized Linear Model Regression Results                  
 ==============================================================================
-Dep. Variable:          happening_bin   No. Observations:                  778
-Model:                            GLM   Df Residuals:                      758
-Model Family:                Binomial   Df Model:                           19
+Dep. Variable:          happening_bin   No. Observations:                 1010
+Model:                            GLM   Df Residuals:                      998
+Model Family:                Binomial   Df Model:                           11
 Link Function:                  Logit   Scale:                          1.0000
-Method:                          IRLS   Log-Likelihood:                -532.44
-Date:                Mon, 04 May 2026   Deviance:                       1064.9
-Time:                        13:47:52   Pearson chi2:                     778.
-No. Iterations:                     4   Pseudo R-squ. (CS):            0.01573
+Method:                          IRLS   Log-Likelihood:                -618.69
+Date:                Mon, 04 May 2026   Deviance:                       1237.4
+Time:                        16:18:45   Pearson chi2:                 1.01e+03
+No. Iterations:                     4   Pseudo R-squ. (CS):            0.02647
 Covariance Type:            nonrobust                                         
-==================================================================================================
-                                     coef    std err          z      P>|z|      [0.025      0.975]
---------------------------------------------------------------------------------------------------
-Intercept                          1.8528      2.112      0.877      0.380      -2.287       5.993
-C(gender)[T.Male]                  0.1414      0.147      0.963      0.336      -0.146       0.429
-C(race4)[T.Hispanic]               0.2080      0.226      0.920      0.357      -0.235       0.651
-C(race4)[T.Other]                  0.1779      0.301      0.591      0.555      -0.412       0.768
-C(race4)[T.White]                  0.1282      0.246      0.520      0.603      -0.355       0.611
-C(educ_category)[T.2]             -0.3363      0.204     -1.646      0.100      -0.737       0.064
-C(educ_category)[T.3]             -0.1222      0.208     -0.588      0.557      -0.530       0.285
-C(educ_category)[T.4]             -0.4008      0.203     -1.973      0.048      -0.799      -0.003
-C(region9)[T.E. South Central]     0.1375      0.376      0.366      0.714      -0.599       0.874
-C(region9)[T.Mid-Atlantic]        -0.1927      0.441     -0.437      0.662      -1.056       0.671
-C(region9)[T.Mountain]             0.1249      0.334      0.374      0.709      -0.531       0.781
-C(region9)[T.New England]         -0.2068      0.341     -0.606      0.545      -0.876       0.462
-C(region9)[T.Pacific]             -0.1130      0.346     -0.327      0.744      -0.790       0.564
-C(region9)[T.South Atlantic]       0.0014      0.313      0.005      0.996      -0.612       0.615
-C(region9)[T.W. North Central]    -0.0172      0.307     -0.056      0.955      -0.620       0.585
-C(region9)[T.W. South Central]    -0.0988      0.385     -0.257      0.797      -0.853       0.655
-co2_per_capita                    -0.0095      0.006     -1.496      0.135      -0.022       0.003
-dem_share_two_party               -0.5252      1.693     -0.310      0.756      -3.843       2.793
-drive_alone_share                 -1.5643      2.037     -0.768      0.443      -5.557       2.428
-samesex_share                    -22.8450     53.146     -0.430      0.667    -127.010      81.320
-==================================================================================================
+=========================================================================================
+                            coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                -0.3106      1.505     -0.206      0.836      -3.260       2.639
+C(gender)[T.Male]        -0.1759      0.138     -1.276      0.202      -0.446       0.094
+C(race4)[T.Hispanic]     -0.0573      0.269     -0.213      0.831      -0.584       0.469
+C(race4)[T.Other]         0.3009      0.353      0.853      0.394      -0.391       0.993
+C(race4)[T.White]         0.0861      0.234      0.368      0.713      -0.373       0.545
+C(educ_category)[T.2]    -0.1449      0.228     -0.635      0.525      -0.592       0.302
+C(educ_category)[T.3]     0.0966      0.226      0.426      0.670      -0.347       0.541
+C(educ_category)[T.4]     0.3647      0.235      1.553      0.120      -0.096       0.825
+co2_per_capita           -0.0155      0.008     -1.886      0.059      -0.032       0.001
+dem_share_two_party       1.9151      1.319      1.452      0.146      -0.669       4.500
+pct_drive_alone           0.4734      1.422      0.333      0.739      -2.314       3.261
+pct_samesex_hh           -0.6676     43.952     -0.015      0.988     -86.811      85.476
+=========================================================================================
 
-State Estimate Summary:
-  Mean:   0.5008
-  Median: 0.5056
-  Min:    0.3856
-  Max:    0.5946
-  Std:    0.0430
+State estimates — mean:0.6681  min:0.3008  max:0.8457
