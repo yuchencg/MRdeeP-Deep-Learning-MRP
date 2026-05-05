@@ -84,6 +84,59 @@ df['marstat'] = df['marital_status'].map({
 })
 
 # ══════════════════════════════════════════════════════════════════════
+# COUNTY ASSIGNMENT
+# Real Qualtrics data: LocationLatitude/LocationLongitude are IP-geolocated
+#   with ~1-10 km fuzz. Reverse-geocoded to county via reverse_geocoder.
+#   To activate: pip install reverse_geocoder
+# Synthetic data: lat/lon are random uniform — falls back to ACS-weighted
+#   probabilistic sampling within each respondent's state.
+# ══════════════════════════════════════════════════════════════════════
+
+_COUNTY_PATH = os.path.join(_HERE, 'processed', 'poststrat_county.csv')
+_county_pop = (
+    pd.read_csv(_COUNTY_PATH, dtype={'state_fips': str, 'county_fips': str})
+    .groupby(['state_fips', 'county_fips', 'county_name'])['N_rounded']
+    .sum().reset_index()
+)
+
+try:
+    import reverse_geocoder as rg
+    _coords = list(zip(df['LocationLatitude'].astype(float),
+                       df['LocationLongitude'].astype(float)))
+    _geo = rg.search(_coords, verbose=False)
+    # Normalise names for matching: lowercase, strip trailing " county"
+    _norm = lambda s: s.lower().removesuffix(' county').strip()
+    _lookup = {
+        (r['state_fips'], _norm(r['county_name'])): (r['county_fips'], r['county_name'])
+        for _, r in _county_pop.iterrows()
+    }
+    _fips_list, _name_list = [], []
+    for _row, _res in zip(df.itertuples(), _geo):
+        _fips, _name = _lookup.get((_row.state_fips, _norm(_res['admin2'])),
+                                   ('', _res['admin2']))
+        _fips_list.append(_fips)
+        _name_list.append(_name)
+    df['county_fips'] = _fips_list
+    df['county_name'] = _name_list
+    print(f"Counties geocoded from lat/lon: {df['county_fips'].nunique()} unique")
+
+except ImportError:
+    # Synthetic path: coordinates are random — sample county by ACS population weight
+    _rng = np.random.default_rng(42)
+    df['county_fips'] = ''
+    df['county_name'] = ''
+    for _state, _idx in df.groupby('state_fips').groups.items():
+        _sub = _county_pop[_county_pop['state_fips'] == _state]
+        if _sub.empty:
+            continue
+        _w = _sub['N_rounded'].values.astype(float)
+        _w /= _w.sum()
+        _chosen = _rng.choice(len(_sub), size=len(_idx), p=_w)
+        df.loc[_idx, 'county_fips'] = _sub.iloc[_chosen]['county_fips'].values
+        df.loc[_idx, 'county_name'] = _sub.iloc[_chosen]['county_name'].values
+    print(f"Counties sampled (synthetic): {df['county_fips'].nunique()} unique across {df['state_fips'].nunique()} states")
+
+# ══════════════════════════════════════════════════════════════════════
 # BINARY OUTCOME RECODING  (all 30 variables)
 # ══════════════════════════════════════════════════════════════════════
 
@@ -177,7 +230,7 @@ df['hear_gw_bin'] = bin_map(df['hear_GW_media'], [5, 6])
 # ══════════════════════════════════════════════════════════════════════
 
 DEMOG_COLS = [
-    'ResponseId', 'state_fips', 'state_name',
+    'ResponseId', 'state_fips', 'state_name', 'county_fips', 'county_name',
     'gender', 'race4', 'educ_category', 'age_group', 'marstat',
 ]
 
@@ -226,3 +279,4 @@ for col, vals in [('gender', None), ('race4', None),
         vc = out[col].value_counts()
     print(f"  {col}: {dict(vc.head(6))}")
 print(f"  state_fips sample (first 5): {sorted(out['state_fips'].unique())[:5]}")
+print(f"  county_fips: {out['county_fips'].nunique()} unique counties")
