@@ -6,16 +6,16 @@ Demographics: mapped to match ACS poststrat frame
 
 Outcomes: all 30 opinion variables recoded to binary 0/1.
   Don't-know / uncertain responses → NaN (excluded from modeling).
-  Answer codes confirmed from Climate_Survey_-_Updated_Draft.qsf.
 """
 
 import pandas as pd
 import numpy as np
 
 import os
-_HERE = os.path.dirname(os.path.abspath(__file__))
-RAW = os.path.join(_HERE, 'raw', 'climate_survey_responses.csv')
-OUT = os.path.join(_HERE, 'processed', 'climate_survey_responses_recoded.csv')
+_HERE     = os.path.dirname(os.path.abspath(__file__))
+_DATA_DIR = os.path.join(os.path.dirname(_HERE), 'test_data')
+RAW = os.path.join(_DATA_DIR, 'raw', 'climate_survey_responses.csv')
+OUT = os.path.join(_DATA_DIR, 'processed', 'climate_survey_responses_recoded.csv')
 
 df = pd.read_csv(RAW)
 
@@ -83,6 +83,25 @@ df['marstat'] = df['marital_status'].map({
     1: 'Married', 2: 'Widowed', 3: 'Divorced', 4: 'Separated', 5: 'Never married'
 })
 
+
+# Region9 (matching Census division) and region4 (Census rcd egion) from state FIPS
+FIPS_TO_REGION9 = {
+    '23':1,'25':1,'09':1,'33':1,'44':1,'50':1,          # 1 New England
+    '34':2,'36':2,'42':2,                                 # 2 Mid-Atlantic
+    '17':3,'18':3,'26':3,'39':3,'55':3,                  # 3 East-North Central
+    '19':4,'20':4,'27':4,'29':4,'38':4,'31':4,'46':4,    # 4 West-North Central
+    '11':5,'10':5,'12':5,'13':5,'24':5,                  # 5 South Atlantic
+    '37':5,'45':5,'51':5,'54':5,
+    '01':6,'21':6,'28':6,'47':6,                          # 6 East-South Central
+    '05':7,'22':7,'40':7,'48':7,                          # 7 West-South Central
+    '04':8,'08':8,'16':8,'30':8,'35':8,'32':8,'49':8,'56':8,  # 8 Mountain
+    '02':9,'06':9,'15':9,'41':9,'53':9,                   # 9 Pacific
+}
+REGION9_TO_REGION4 = {1:1, 2:1, 3:2, 4:2, 5:3, 6:3, 7:3, 8:4, 9:4}
+
+df['region9'] = df['state_fips'].map(FIPS_TO_REGION9)
+df['region4'] = df['region9'].map(REGION9_TO_REGION4)
+
 # ══════════════════════════════════════════════════════════════════════
 # COUNTY ASSIGNMENT
 # Real Qualtrics data: LocationLatitude/LocationLongitude are IP-geolocated
@@ -92,7 +111,7 @@ df['marstat'] = df['marital_status'].map({
 #   probabilistic sampling within each respondent's state.
 # ══════════════════════════════════════════════════════════════════════
 
-_COUNTY_PATH = os.path.join(_HERE, 'processed', 'poststrat_county.csv')
+_COUNTY_PATH = os.path.join(_DATA_DIR, 'processed', 'poststrat_county.csv')
 _county_pop = (
     pd.read_csv(_COUNTY_PATH, dtype={'state_fips': str, 'county_fips': str})
     .groupby(['state_fips', 'county_fips', 'county_name'])['N_rounded']
@@ -231,6 +250,7 @@ df['hear_gw_bin'] = bin_map(df['hear_GW_media'], [5, 6])
 
 DEMOG_COLS = [
     'ResponseId', 'state_fips', 'state_name', 'county_fips', 'county_name',
+    'region9', 'region4',
     'gender', 'race4', 'educ_category', 'age_group', 'marstat',
 ]
 
