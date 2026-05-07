@@ -2,65 +2,65 @@ Baseline (Naive Disaggregation) — Diagnostic Summary
 =======================================================
 
 Outcome variable: happening_bin
-Total respondents (non-DK): 1,010
+Total respondents (non-DK): 1,012
 States with estimates: 51
 States with NaN: 0
 
-Mean estimate:   0.6602
-Median estimate: 0.6667
-Min estimate:    0.3077
+Mean estimate:   0.6655
+Median estimate: 0.6825
+Min estimate:    0.1429
 Max estimate:    1.0000
 
 State-level estimates:
 state_fips           state_name  estimate  n_respondents
-        24             Maryland  1.000000             19
-        50              Vermont  1.000000              3
-        19                 Iowa  0.916667             12
-        32               Nevada  0.888889              9
-        23                Maine  0.875000              8
-        25        Massachusetts  0.863636             22
-        34           New Jersey  0.782609             23
-        16                Idaho  0.777778              9
-        42         Pennsylvania  0.777778             36
-        12              Florida  0.766667             60
-        27            Minnesota  0.761905             21
-        06           California  0.752294            109
-        29             Missouri  0.750000             16
-        13              Georgia  0.750000             28
-        04              Arizona  0.750000             20
-        26             Michigan  0.741935             31
-        08             Colorado  0.736842             19
-        40             Oklahoma  0.727273             11
-        10             Delaware  0.714286              7
-        33        New Hampshire  0.714286              7
-        37       North Carolina  0.708333             24
-        55            Wisconsin  0.700000             20
-        51             Virginia  0.681818             22
-        47            Tennessee  0.681818             22
-        36             New York  0.672414             58
-        49                 Utah  0.666667             12
-        38         North Dakota  0.666667              6
-        41               Oregon  0.666667             12
-        53           Washington  0.666667             21
-        11 District of Columbia  0.666667              6
-        48                Texas  0.638889             72
-        46         South Dakota  0.600000              5
-        31             Nebraska  0.600000             10
-        39                 Ohio  0.593750             32
-        22            Louisiana  0.588235             17
-        28          Mississippi  0.583333             12
-        09          Connecticut  0.583333             12
+        15               Hawaii  1.000000              5
+        11 District of Columbia  1.000000              3
+        17             Illinois  0.950000             40
+        08             Colorado  0.928571             14
+        32               Nevada  0.900000             20
+        38         North Dakota  0.875000              8
+        10             Delaware  0.875000              8
+        50              Vermont  0.800000              5
+        24             Maryland  0.800000             15
+        26             Michigan  0.777778             27
+        41               Oregon  0.777778              9
+        01              Alabama  0.764706             17
+        42         Pennsylvania  0.763158             38
+        51             Virginia  0.756757             37
+        46         South Dakota  0.750000              8
+        27            Minnesota  0.736842             19
+        06           California  0.735294            102
+        36             New York  0.732143             56
+        20               Kansas  0.727273             11
+        25        Massachusetts  0.727273             11
+        09          Connecticut  0.714286             21
+        53           Washington  0.708333             24
+        40             Oklahoma  0.700000             10
+        45       South Carolina  0.692308             13
+        23                Maine  0.692308             13
+        48                Texas  0.682540             63
+        04              Arizona  0.666667             21
+        55            Wisconsin  0.666667             12
+        54        West Virginia  0.666667             12
+        13              Georgia  0.666667             18
+        18              Indiana  0.666667             24
+        19                 Iowa  0.647059             17
+        12              Florida  0.644737             76
+        22            Louisiana  0.631579             19
+        34           New Jersey  0.625000             24
+        39                 Ohio  0.611111             36
+        30              Montana  0.600000              5
+        49                 Utah  0.600000             15
         44         Rhode Island  0.571429              7
-        45       South Carolina  0.562500             16
-        15               Hawaii  0.555556              9
-        17             Illinois  0.552632             38
-        56              Wyoming  0.500000              4
-        30              Montana  0.500000              6
-        02               Alaska  0.500000              4
-        21             Kentucky  0.500000             16
-        20               Kansas  0.500000             10
-        01              Alabama  0.437500             16
-        54        West Virginia  0.428571              7
-        18              Indiana  0.409091             22
-        35           New Mexico  0.333333              9
-        05             Arkansas  0.307692             13
+        31             Nebraska  0.555556              9
+        21             Kentucky  0.555556             18
+        37       North Carolina  0.533333             15
+        35           New Mexico  0.500000              4
+        28          Mississippi  0.500000             14
+        47            Tennessee  0.461538             13
+        29             Missouri  0.458333             24
+        16                Idaho  0.428571              7
+        56              Wyoming  0.400000              5
+        33        New Hampshire  0.375000              8
+        02               Alaska  0.200000              5
+        05             Arkansas  0.142857              7

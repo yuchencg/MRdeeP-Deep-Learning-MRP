@@ -3,73 +3,73 @@ GLMER-MRP (Howe 2015, penalised ML) — Diagnostic Summary
 
 Outcome: happening_bin
 Estimation: L-BFGS-B MAP with diffuse priors (sigma_prior=10.0)
-Observations: 1,010
-Converged: True  iterations: 96  time: 1.5s
+Observations: 1,012
+Converged: True  iterations: 106  time: 1.4s
 
-Intercept:  1.0841
-gamma_carbon:  -0.0781
-gamma_pres:    0.2055
-gamma_drive:   0.0234
-gamma_samesex: -0.1235
+Intercept:  1.0782
+gamma_carbon:  0.0732
+gamma_pres:    0.4273
+gamma_drive:   0.0098
+gamma_samesex: -0.1842
 
-Sigma_gender:  0.4272
-Sigma_race:    0.2685
-Sigma_educ:    0.2815
+Sigma_gender:  0.4290
+Sigma_race:    0.2797
+Sigma_educ:    0.2964
 Sigma_state:   0.0000
-Sigma_region:  0.0832
+Sigma_region:  0.0866
 
-State estimates — mean:0.8035  min:0.6965  max:0.9098
+State estimates — mean:0.7400  min:0.5567  max:0.9452
 
 State-level estimates:
 state_fips  estimate           state_name  n_respondents
-        11  0.909777 District of Columbia              6
-        15  0.899023               Hawaii              9
-        24  0.887206             Maryland             19
-        34  0.866730           New Jersey             23
-        51  0.863817             Virginia             22
-        36  0.859319             New York             58
-        25  0.851319        Massachusetts             22
-        06  0.851024           California            109
-        53  0.847955           Washington             21
-        37  0.847855       North Carolina             24
-        08  0.846830             Colorado             19
-        27  0.844154            Minnesota             21
-        13  0.843570              Georgia             28
-        09  0.841896          Connecticut             12
-        10  0.841152             Delaware              7
-        50  0.835588              Vermont              3
-        44  0.832662         Rhode Island              7
-        42  0.831415         Pennsylvania             36
-        41  0.830541               Oregon             12
-        45  0.828195       South Carolina             16
-        04  0.818240              Arizona             20
-        33  0.817420        New Hampshire              7
-        02  0.817015               Alaska              4
-        20  0.816111               Kansas             10
-        31  0.815561             Nebraska             10
-        12  0.814479              Florida             60
-        35  0.812445           New Mexico              9
-        46  0.810854         South Dakota              5
-        32  0.809873               Nevada              9
-        19  0.809712                 Iowa             12
-        30  0.808577              Montana              6
-        49  0.801802                 Utah             12
-        23  0.800555                Maine              8
-        29  0.798436             Missouri             16
-        16  0.790999                Idaho              9
-        17  0.776723             Illinois             38
-        38  0.762392         North Dakota              6
-        28  0.757985          Mississippi             12
-        26  0.756569             Michigan             31
-        48  0.754653                Texas             72
-        55  0.750161            Wisconsin             20
-        01  0.738291              Alabama             16
-        47  0.733203            Tennessee             22
-        54  0.732275        West Virginia              7
-        40  0.730086             Oklahoma             11
-        22  0.726499            Louisiana             17
-        39  0.726451                 Ohio             32
-        05  0.726388             Arkansas             13
-        56  0.706144              Wyoming              4
-        21  0.701973             Kentucky             16
-        18  0.696497              Indiana             22
+        11  0.945190 District of Columbia              3
+        24  0.867851             Maryland             15
+        17  0.832722             Illinois             40
+        15  0.820507               Hawaii              5
+        34  0.816957           New Jersey             24
+        08  0.810927             Colorado             14
+        36  0.808247             New York             56
+        06  0.808184           California            102
+        51  0.805368             Virginia             37
+        26  0.792362             Michigan             27
+        13  0.785751              Georgia             18
+        53  0.781512           Washington             24
+        55  0.779905            Wisconsin             12
+        10  0.778443             Delaware              8
+        25  0.777408        Massachusetts             11
+        35  0.776056           New Mexico              4
+        09  0.770486          Connecticut             21
+        37  0.770081       North Carolina             15
+        27  0.764007            Minnesota             19
+        28  0.758022          Mississippi             14
+        41  0.750744               Oregon              9
+        50  0.749535              Vermont              5
+        42  0.747187         Pennsylvania             38
+        22  0.747079            Louisiana             19
+        04  0.746992              Arizona             21
+        39  0.746502                 Ohio             36
+        32  0.741444               Nevada             20
+        48  0.738608                Texas             63
+        45  0.738360       South Carolina             13
+        44  0.738079         Rhode Island              7
+        02  0.734674               Alaska              5
+        30  0.725170              Montana              5
+        18  0.716689              Indiana             24
+        20  0.711597               Kansas             11
+        31  0.706622             Nebraska              9
+        12  0.705200              Florida             76
+        01  0.703818              Alabama             17
+        19  0.702605                 Iowa             17
+        38  0.698600         North Dakota              8
+        49  0.697231                 Utah             15
+        33  0.690179        New Hampshire              8
+        56  0.680023              Wyoming              5
+        29  0.673416             Missouri             24
+        46  0.667964         South Dakota              8
+        23  0.667016                Maine             13
+        05  0.656463             Arkansas              7
+        47  0.656054            Tennessee             13
+        16  0.651911                Idaho              7
+        40  0.633356             Oklahoma             10
+        21  0.608648             Kentucky             18
+        54  0.556688        West Virginia             12
