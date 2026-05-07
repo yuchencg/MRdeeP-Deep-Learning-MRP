@@ -1,52 +1,52 @@
 state_fips,state_name,estimate
-42,Pennsylvania,0.4589292
-23,Maine,0.45746878
-54,West Virginia,0.45178887
-05,Arkansas,0.4516771
-53,Washington,0.45095724
-45,South Carolina,0.4504657
-19,Iowa,0.44953048
-21,Kentucky,0.4491904
-33,New Hampshire,0.44729334
-31,Nebraska,0.4472792
-40,Oklahoma,0.4470633
-15,Hawaii,0.44668013
-32,Nevada,0.44603902
-47,Tennessee,0.44516698
-48,Texas,0.4443006
-24,Maryland,0.44418174
-13,Georgia,0.44403765
-34,New Jersey,0.44372132
-02,Alaska,0.44301546
-37,North Carolina,0.44272667
-38,North Dakota,0.44264066
-49,Utah,0.44260883
-06,California,0.442379
-12,Florida,0.4415921
-28,Mississippi,0.4413178
-04,Arizona,0.4412482
-27,Minnesota,0.44083887
-51,Virginia,0.44082195
-22,Louisiana,0.4404551
-39,Ohio,0.44043532
-46,South Dakota,0.4403354
-29,Missouri,0.4397439
-50,Vermont,0.43931556
-56,Wyoming,0.43917397
-09,Connecticut,0.43859017
-17,Illinois,0.43852618
-20,Kansas,0.43786377
-26,Michigan,0.43729937
-41,Oregon,0.4367819
-16,Idaho,0.43651354
-36,New York,0.4356456
-30,Montana,0.4354024
-35,New Mexico,0.4349359
-10,Delaware,0.43440595
-55,Wisconsin,0.433987
-44,Rhode Island,0.4315513
-11,District of Columbia,0.4315405
-25,Massachusetts,0.43005297
-01,Alabama,0.4297833
-18,Indiana,0.42756778
-08,Colorado,0.4227945
+11,District of Columbia,0.47920978
+32,Nevada,0.47582734
+23,Maine,0.47403663
+49,Utah,0.4730096
+27,Minnesota,0.47272012
+05,Arkansas,0.47263134
+40,Oklahoma,0.47245854
+53,Washington,0.47225913
+42,Pennsylvania,0.4721179
+34,New Jersey,0.47206903
+36,New York,0.47192305
+31,Nebraska,0.4718372
+13,Georgia,0.47176856
+08,Colorado,0.47166678
+51,Virginia,0.4716508
+38,North Dakota,0.47164556
+48,Texas,0.4716177
+54,West Virginia,0.4716071
+39,Ohio,0.47148374
+35,New Mexico,0.47132435
+47,Tennessee,0.47126672
+29,Missouri,0.47124055
+56,Wyoming,0.47114858
+17,Illinois,0.4711301
+28,Mississippi,0.4710883
+16,Idaho,0.47083488
+21,Kentucky,0.47073382
+18,Indiana,0.47069588
+50,Vermont,0.4706936
+19,Iowa,0.4704801
+09,Connecticut,0.47034454
+41,Oregon,0.4702857
+30,Montana,0.4702228
+24,Maryland,0.4701235
+12,Florida,0.47006032
+37,North Carolina,0.4700596
+01,Alabama,0.4698911
+22,Louisiana,0.4698556
+02,Alaska,0.46983624
+55,Wisconsin,0.46973327
+20,Kansas,0.4696383
+46,South Dakota,0.46941787
+25,Massachusetts,0.468831
+06,California,0.46875587
+26,Michigan,0.46835873
+33,New Hampshire,0.4682903
+44,Rhode Island,0.46816877
+04,Arizona,0.46814632
+15,Hawaii,0.46802056
+45,South Carolina,0.4678689
+10,Delaware,0.4652004
