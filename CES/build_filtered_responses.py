@@ -2,19 +2,21 @@
 Build filtered_responses_preprocessing.dta from the CES 2022 common output.
 
 Inputs:
-  - CES_Info/CCES22_Common_OUTPUT_vv_topost(1).dta
-  - raw_data/questions_to_include.csv
-  - raw_data/State,_County_and_City_FIPS_Reference_Table_20260509.csv
-  - raw_data/co-est2025-pop.xlsx  (Census CO-EST2025-POP county estimates)
+  - data_raw/CCES22_Common_OUTPUT_vv_topost.dta
+  - data_raw/questions_to_include.csv
+  - data_raw/state_county_city_FIPS_reference_table_20260509.csv
+  - data_raw/co-est2025-pop.xlsx  (Census CO-EST2025-POP county estimates)
 
 Output:
-  - raw_data/filtered_responses_preprocessing.dta
+  - data_processed/filtered_responses_preprocessing.dta
+    Outcome vars are renamed (see RENAME_MAP) and support/oppose items
+    recoded to binary 1=Support / 0=Oppose (see SUPPORT_BINARY_VARS).
 
 Defaults (edit the CONFIG block to change):
   - Keeps both pre-wave weights: commonweight, vvweight
   - Filters rows to pre-wave respondents (commonweight non-null)
   - Drops any *_post columns; only includes the pre-wave variables listed
-    in questions_to_include.csv that actually exist in the .dta
+    in questions_to_include.csv 
   - county_fips is the 5-digit state+county FIPS string (e.g. "26163");
     state_fips is the 2-digit state FIPS string (e.g. "26")
   - Adds state_name (from FIPS reference) and county_name (from Census file
@@ -41,15 +43,34 @@ import pandas as pd
 # CONFIG
 # ---------------------------------------------------------------------------
 ROOT = Path(__file__).resolve().parent
-DTA_IN = ROOT / "CES_Info" / "CCES22_Common_OUTPUT_vv_topost(1).dta"
-QUESTIONS_CSV = ROOT / "raw_data" / "questions_to_include.csv"
-FIPS_CSV = ROOT / "raw_data" / "State,_County_and_City_FIPS_Reference_Table_20260509.csv"
-COEST_XLSX = ROOT / "raw_data" / "co-est2025-pop.xlsx"
-DTA_OUT = ROOT / "raw_data" / "filtered_responses_preprocessing.dta"
+DTA_IN = ROOT / "data_raw" / "CCES22_Common_OUTPUT_vv_topost.dta"
+QUESTIONS_CSV = ROOT / "data_raw" / "questions_to_include.csv"
+FIPS_CSV = ROOT / "data_raw" / "state_county_city_FIPS_reference_table_20260509.csv"
+COEST_XLSX = ROOT / "data_raw" / "co-est2025-pop.xlsx"
+DTA_OUT = ROOT / "data_processed" / "filtered_responses_preprocessing.dta"
 
 PRE_WEIGHTS = ["commonweight", "vvweight"]  # pre-wave weights to retain
 ROW_FILTER_WEIGHT = "commonweight"          # require non-null on this weight
 POP_YEAR = 2022                             # column from co-est2025-pop.xlsx
+
+# Support/oppose vars recoded to binary: 1=Support, 0=Oppose, others→NA.
+# Original CES coding: 1=Support, 2=Oppose, 8=skipped, 9=not asked.
+SUPPORT_BINARY_VARS = [
+    "CC22_333a", "CC22_333b", "CC22_333c", "CC22_333d", "CC22_333e",
+    "CC22_355a",
+]
+
+# Rename outcome variables to descriptive names for MRP models.
+# Keys are original CES variable names; values are new column names.
+RENAME_MAP = {
+    "CC22_333":  "climate_problem",   # 5-cat: how serious is climate change?
+    "CC22_333a": "regulate_carbon",   # Support: EPA regulate CO2 emissions
+    "CC22_333b": "renewable_fuel",    # Support: require renewable fuels per state
+    "CC22_333c": "clean_air_water",   # Support: strengthen EPA Clean Air/Water Act
+    "CC22_333d": "fuel_efficiency",   # Support: raise fuel efficiency (40→54.5 mpg)
+    "CC22_333e": "fossil_fuel",       # Support: increase fossil fuel production
+    "CC22_355a": "paris_agreement",   # Support: US rejoins Paris Climate Agreement
+}
 
 
 # ---------------------------------------------------------------------------
@@ -57,9 +78,6 @@ POP_YEAR = 2022                             # column from co-est2025-pop.xlsx
 # ---------------------------------------------------------------------------
 def load_question_varnames(path: Path) -> list[str]:
     """Read questions_to_include.csv and return unique Var_name values.
-
-    The CSV is messy (multi-line answer-option cells, header repeats), so we
-    read it permissively and dedupe.
     """
     df = pd.read_csv(path, dtype=str, on_bad_lines="skip")
     if "Var_name" not in df.columns:
@@ -485,6 +503,40 @@ def main() -> None:
             ),
         }
     )
+
+    # --- Recode support/oppose outcomes to binary (1=Support, 0=Oppose) ---
+    # CES original: 1=Support, 2=Oppose, 8=skipped, 9=not asked → all non-1/2 → NA.
+    support_recoded = []
+    for var in SUPPORT_BINARY_VARS:
+        if var not in out.columns:
+            continue
+        out[var] = out[var].map({1: 1, 2: 0}).astype("Int8")
+        value_labels[var] = {1: "Support", 0: "Oppose"}
+        support_recoded.append(var)
+    if support_recoded:
+        print(
+            f"Recoded {len(support_recoded)} vars to binary 1=Support/0=Oppose: "
+            + ", ".join(support_recoded)
+        )
+
+    # --- Rename outcome variables to descriptive names ---
+    active_renames = {k: v for k, v in RENAME_MAP.items() if k in out.columns}
+    if active_renames:
+        out = out.rename(columns=active_renames)
+        value_labels  = {active_renames.get(k, k): v for k, v in value_labels.items()}
+        variable_labels = {active_renames.get(k, k): v for k, v in variable_labels.items()}
+        print("Renamed columns: " + ", ".join(f"{k}→{v}" for k, v in active_renames.items()))
+
+    # --- Recode climate_problem to binary ---
+    # 1 ("serious problem / immediate action") + 2 ("enough evidence / some action") → 1
+    # 3 ("more research needed") + 4 ("concern exaggerated") + 5 ("not occurring") → 0
+    # 8 (skipped), 9 (not asked), NA → NA
+    if "climate_problem" in out.columns:
+        out["climate_problem"] = (
+            out["climate_problem"].map({1: 1, 2: 1, 3: 0, 4: 0, 5: 0}).astype("Int8")
+        )
+        value_labels["climate_problem"] = {1: "Climate action needed", 0: "No action needed"}
+        print("Recoded climate_problem: cat 1-2 → 1 (action needed), cat 3-5 → 0 (no action)")
 
     DTA_OUT.parent.mkdir(parents=True, exist_ok=True)
     print(
