@@ -1,0 +1,117 @@
+Name,Var_name,Grid prompt,Exact Wording,Answer Options
+Gender,gender4,,What is your gender?,Man
+Gender,gender4,,What is your gender?,Woman
+Gender,gender4,,What is your gender?,Non-binary
+Gender,gender4,,What is your gender?,Other
+Education,educ,,What is the highest level of education you have completed?,No HS
+Education,educ,,What is the highest level of education you have completed?,High school graduate
+Education,educ,,What is the highest level of education you have completed?,Some college
+Education,educ,,What is the highest level of education you have completed?,2-year
+Education,educ,,What is the highest level of education you have completed?,4-year
+Education,educ,,What is the highest level of education you have completed?,Post-grad
+Race,race,,What racial or ethnic group best describes you?,White
+Race,race,,What racial or ethnic group best describes you?,Black
+Race,race,,What racial or ethnic group best describes you?,Hispanic
+Race,race,,What racial or ethnic group best describes you?,Asian
+Race,race,,What racial or ethnic group best describes you?,Native American
+Race,race,,What racial or ethnic group best describes you?,Middle Eastern
+Race,race,,What racial or ethnic group best describes you?,Two or more races
+Race,race,,What racial or ethnic group best describes you?,Other
+Hispanic,hispanic,,"Are you of Spanish, Latino, or Hispanic origin or descent?",Yes
+Hispanic,hispanic,,"Are you of Spanish, Latino, or Hispanic origin or descent?",No
+Climate,CC22_333,,"From what you know about global climate change or global warming, which one of the following statements comes closest to your opinion? warming, which one of the following statements comes closest to your opinion?","Global climate change has been established as a serious problem, and immediate
+action is necessary"
+Climate,CC22_334,,"From what you know about global climate change or global warming, which one of the following statements comes closest to your opinion? warming, which one of the following statements comes closest to your opinion?","There is enough evidence that climate change is taking place and some action should
+be taken"
+Climate,CC22_335,,"From what you know about global climate change or global warming, which one of the following statements comes closest to your opinion? warming, which one of the following statements comes closest to your opinion?"," We don't know enough about global climate change, and more research is necessary
+before we take any actions"
+Climate,CC22_336,,"From what you know about global climate change or global warming, which one of the following statements comes closest to your opinion? warming, which one of the following statements comes closest to your opinion?",Concern about global climate change is exaggerated. No action is necessary
+Climate,CC22_337,,"From what you know about global climate change or global warming, which one of the following statements comes closest to your opinion? warming, which one of the following statements comes closest to your opinion?",Global climate change is not occurring; this is not a real issue
+CC22_333grid,CC22_333a,"Do you support or oppose each of the following
+proposals?","Give the
+Environmental Protection
+Agency power to regulate
+carbon dioxide emissions",Support
+CC22_333grid,CC22_333a,"Do you support or oppose each of the following
+proposals?","Give the
+Environmental Protection
+Agency power to regulate
+carbon dioxide emissions",Oppose
+CC22_333grid,CC22_333b,"Do you support or oppose each of the following
+proposals?","Require that
+each state use a minimum
+amount of renewable fuels
+(wind, solar, and
+hydroelectric) in the
+generation of electricity
+even if electricity prices
+increase a little",Support
+CC22_333grid,CC22_333b,"Do you support or oppose each of the following
+proposals?","Require that
+each state use a minimum
+amount of renewable fuels
+(wind, solar, and
+hydroelectric) in the
+generation of electricity
+even if electricity prices
+increase a little",Oppose
+CC22_333grid,CC22_333c,"Do you support or oppose each of the following
+proposals?","Strengthen
+the Environmental
+Protection Agency
+enforcement of the Clean
+Air Act and Clean Water Act
+even if it costs U.S. job",Support
+CC22_333grid,CC22_333c,"Do you support or oppose each of the following
+proposals?","Strengthen
+the Environmental
+Protection Agency
+enforcement of the Clean
+Air Act and Clean Water Act
+even if it costs U.S. job",Oppose
+CC22_333grid,CC22_333d,"Do you support or oppose each of the following
+proposals?","Raise the
+average fuel efficiency for
+all cars and trucks in the US
+from 40 miles per gallon to
+54.5 miles per gallon by
+2025",Support
+CC22_333grid,CC22_333d,"Do you support or oppose each of the following
+proposals?","Raise the
+average fuel efficiency for
+all cars and trucks in the US
+from 40 miles per gallon to
+54.5 miles per gallon by
+2025",Oppose
+CC22_333grid,CC22_333e,"Do you support or oppose each of the following
+proposals?","Increase fossil
+fuel production in the U.S.
+and boost exports of U.S.
+liquefied natural gas",Support
+CC22_333grid,CC22_333e,"Do you support or oppose each of the following
+proposals?","Increase fossil
+fuel production in the U.S.
+and boost exports of U.S.
+liquefied natural gas",Oppose
+CC22_355grid,CC22_355a,"For each of the following tell us whether you support or
+oppose these decisions.","The United
+States re-joins the Paris
+Climate Agreement",Support
+CC22_355grid,CC22_355a,"For each of the following tell us whether you support or
+oppose these decisions.","The United
+States re-joins the Paris
+Climate Agreement",Oppose
+CC22_355grid,CC22_355a,"For each of the following tell us whether you support or
+oppose these decisions.","Order all
+federal agencies to buy
+clean energy, purchase
+electric vehicles, and make
+federal buildings energy
+efficient.",Support
+CC22_355grid,CC22_355a,"For each of the following tell us whether you support or
+oppose these decisions.","Order all
+federal agencies to buy
+clean energy, purchase
+electric vehicles, and make
+federal buildings energy
+efficient.",Oppose
