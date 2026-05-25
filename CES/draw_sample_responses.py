@@ -1,12 +1,14 @@
 """
-Draw a nationally representative sample of 1,200 respondents from
-filtered_responses_preprocessing.dta, stratified by state population.
+Draw nationally representative samples of 1,000 / 3,000 / 5,000 respondents
+from filtered_responses_preprocessing.dta, stratified by state population.
 
 Inputs:
   - data_processed/filtered_responses_preprocessing.dta
 
-Output:
-  - data_processed/sample_ces.dta
+Outputs:
+  - data_processed/sample_ces_1000.csv
+  - data_processed/sample_ces_3000.csv
+  - data_processed/sample_ces_5000.csv
 
 Method:
   - Sample sizes are allocated proportionally via Hamilton's largest-remainder
@@ -31,9 +33,9 @@ import pandas as pd
 # ---------------------------------------------------------------------------
 ROOT    = Path(__file__).resolve().parent
 DTA_IN  = ROOT / "data_processed" / "filtered_responses_preprocessing.dta"
-CSV_OUT = ROOT / "data_processed" / "sample_ces.csv"
+OUT_DIR = ROOT / "data_processed"
 
-N_SAMPLE    = 1_200
+N_SAMPLES   = [1_000, 3_000, 5_000]
 RANDOM_SEED = 42
 WEIGHT_COL  = "commonweight"
 
@@ -60,6 +62,33 @@ def hamilton_allocation(pops: pd.Series, n_total: int) -> pd.Series:
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
+def draw_sample(df: pd.DataFrame, state_meta: pd.DataFrame, n_sample: int) -> pd.DataFrame:
+    alloc = hamilton_allocation(state_meta["state_pop"], n_sample)
+    rng = np.random.default_rng(RANDOM_SEED)
+    parts: list[pd.DataFrame] = []
+
+    for fips, n_alloc in alloc.items():
+        pool = df[df["state_fips"] == fips]
+        if len(pool) == 0:
+            print(f"  WARNING: no respondents for FIPS {fips}, skipping")
+            continue
+        if n_alloc > len(pool):
+            print(f"  WARNING: {state_meta.loc[fips, 'state_name']} needs {n_alloc} "
+                  f"but only {len(pool)} available; sampling all {len(pool)}")
+            parts.append(pool)
+            continue
+
+        w = pool[WEIGHT_COL].fillna(0).clip(lower=0)
+        if w.sum() == 0:
+            w = pd.Series(1.0, index=pool.index)
+        probs = (w / w.sum()).values
+
+        chosen = rng.choice(pool.index, size=n_alloc, replace=False, p=probs)
+        parts.append(pool.loc[chosen])
+
+    return pd.concat(parts, ignore_index=True)
+
+
 def main() -> None:
     warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 
@@ -83,51 +112,15 @@ def main() -> None:
             "Re-run build_filtered_responses.py to regenerate the processed file."
         )
 
-    # --- Proportional allocation ---
-    alloc = hamilton_allocation(state_meta["state_pop"], N_SAMPLE)
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    print(f"\nAllocation summary (top 10 by population):")
-    display = (
-        state_meta["state_name"]
-        .to_frame()
-        .join(state_meta["state_pop"])
-        .join(alloc.rename("n_alloc"))
-        .sort_values("state_pop", ascending=False)
-    )
-    for _, row in display.head(10).iterrows():
-        print(f"  {row['state_name']:<25} pop={int(row['state_pop']):>12,}  n={row['n_alloc']:>3}")
-    print(f"  ... ({len(alloc)} states total, sum={alloc.sum()})")
-
-    # --- Stratified sampling ---
-    rng = np.random.default_rng(RANDOM_SEED)
-    parts: list[pd.DataFrame] = []
-
-    for fips, n_alloc in alloc.items():
-        pool = df[df["state_fips"] == fips]
-        if len(pool) == 0:
-            print(f"  WARNING: no respondents for FIPS {fips}, skipping")
-            continue
-        if n_alloc > len(pool):
-            print(f"  WARNING: {state_meta.loc[fips, 'state_name']} needs {n_alloc} "
-                  f"but only {len(pool)} available; sampling all {len(pool)}")
-            parts.append(pool)
-            continue
-
-        w = pool[WEIGHT_COL].fillna(0).clip(lower=0)
-        if w.sum() == 0:
-            w = pd.Series(1.0, index=pool.index)
-        probs = (w / w.sum()).values
-
-        chosen = rng.choice(pool.index, size=n_alloc, replace=False, p=probs)
-        parts.append(pool.loc[chosen])
-
-    sample = pd.concat(parts, ignore_index=True)
-    print(f"\nFinal sample: {len(sample):,} rows across "
-          f"{sample['state_fips'].nunique()} states")
-
-    CSV_OUT.parent.mkdir(parents=True, exist_ok=True)
-    sample.to_csv(str(CSV_OUT), index=False)
-    print(f"Saved → {CSV_OUT}")
+    for n in N_SAMPLES:
+        print(f"\n--- Drawing sample of {n:,} ---")
+        sample = draw_sample(df, state_meta, n)
+        print(f"  Final sample: {len(sample):,} rows across {sample['state_fips'].nunique()} states")
+        csv_out = OUT_DIR / f"sample_ces_{n}.csv"
+        sample.to_csv(str(csv_out), index=False)
+        print(f"  Saved → {csv_out}")
 
 
 if __name__ == "__main__":
