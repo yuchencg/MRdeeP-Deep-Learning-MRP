@@ -45,6 +45,7 @@ QUESTIONS_CSV = ROOT / "data_raw" / "questions_to_include.csv"
 FIPS_TSV      = ROOT / "data_raw" / "fips2county.tsv"
 COEST_XLSX    = ROOT / "data_raw" / "co-est2025-pop.xlsx"
 DTA_OUT       = ROOT / "data_processed" / "filtered_responses_preprocessing.dta"
+CSV_OUT       = ROOT / "data_processed" / "filtered_responses_preprocessed.csv"
 
 PRE_WEIGHTS      = ["commonweight", "vvweight"]
 ROW_FILTER_WEIGHT = "commonweight"
@@ -373,6 +374,30 @@ def main() -> None:
         value_labels["climate_problem"] = {1: "Climate action needed", 0: "No action needed"}
         print("Recoded climate_problem: cat 1-2 → 1 (action needed), cat 3-5 → 0 (no action)")
 
+    # --- Recode demographics to ACS poststrat frame categories ---
+    if "gender4" in out.columns:
+        out["gender"] = out["gender4"].astype("float").map({1.0: "Male", 2.0: "Female"})
+        variable_labels["gender"] = "Gender (Male/Female, recoded from gender4)"
+
+    if "educ" in out.columns:
+        out["educ_category"] = out["educ"].astype("float").map(
+            {1.0: "1", 2.0: "2", 3.0: "3", 4.0: "3", 5.0: "4", 6.0: "4"}
+        )
+        variable_labels["educ_category"] = "Education 4-category (1=<HS, 2=HS, 3=Some college, 4=College+)"
+
+    if "race" in out.columns:
+        _race  = out["race"].astype("float")
+        _hisp  = out["hispanic"].astype("float") if "hispanic" in out.columns else pd.Series(0.0, index=out.index)
+        out["race4"] = "Other"
+        out.loc[_race == 1, "race4"] = "White"
+        out.loc[(_race == 3) | (_hisp == 1.0), "race4"] = "Hispanic"
+        out.loc[_race == 2, "race4"] = "Black"
+        variable_labels["race4"] = "Race/ethnicity 4-category (Black/Hispanic/White/Other)"
+
+    demo_added = [c for c in ["gender", "educ_category", "race4"] if c in out.columns]
+    if demo_added:
+        print(f"Added recoded demographic columns: {', '.join(demo_added)}")
+
     DTA_OUT.parent.mkdir(parents=True, exist_ok=True)
     print(
         f"Writing {len(out):,} rows x {out.shape[1]} cols to {DTA_OUT} "
@@ -386,6 +411,10 @@ def main() -> None:
         value_labels=value_labels,
         variable_labels=variable_labels,
     )
+    print(f"Saved .dta → {DTA_OUT}")
+
+    out.to_csv(str(CSV_OUT), index=False)
+    print(f"Saved .csv → {CSV_OUT}")
     print("Done.")
 
 
