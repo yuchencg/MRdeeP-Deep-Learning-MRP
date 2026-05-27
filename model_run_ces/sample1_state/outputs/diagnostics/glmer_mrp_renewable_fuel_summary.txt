@@ -1,0 +1,59 @@
+GLMER-MRP — Diagnostic Summary
+=======================================================
+
+Outcome variable: renewable_fuel
+Likelihood: bernoulli_logit (Laplace approximation)
+Grouping variables: ['race4', 'educ_category', 'gender', 'region9', 'state_fips']
+Fixed effects: intercept + ['co2_per_capita', 'dem_share_two_party', 'drive_alone_share', 'samesex_share']
+Observations: 988
+
+Convergence warnings: none
+
+Random Effect Variance Components:
+  race4                 variance = 0.033669
+  educ_category         variance = 0.022278
+  gender                variance = 0.000024
+  region9               variance = 0.000005
+  state_fips            variance = 0.000000
+
+Fixed Effect Coefficients:
+  intercept             estimate = 0.382129
+  co2_per_capita        estimate = 0.003600
+  dem_share_two_party   estimate = 1.931224
+  drive_alone_share     estimate = -1.127575
+  samesex_share         estimate = 2.177098
+
+Full gpboost summary:
+=====================================================
+Model summary:
+Nb. observations: 988
+Nb. groups: 4 (Group_1), 4 (Group_2), 2 (Group_3), 9 (Group_4), 51 (Group_5)
+ Log-lik     AIC     BIC
+  -642.8 1305.61 1354.57
+-----------------------------------------------------
+Covariance parameters (random effects):
+         Param.
+Group_1  0.0337
+Group_2  0.0223
+Group_3  0.0000
+Group_4  0.0000
+Group_5  0.0000
+-----------------------------------------------------
+Linear regression coefficients (fixed effects):
+             Param.  Std. err.  z value  P(>|z|)
+Covariate_1  0.3821     1.5137   0.2525   0.8007
+Covariate_2  0.0036     0.0099   0.3631   0.7166
+Covariate_3  1.9312     0.9109   2.1202   0.0340
+Covariate_4 -1.1276     1.4544  -0.7753   0.4382
+Covariate_5  2.1771        NaN      NaN      NaN
+=====================================================
+
+State Estimate Summary:
+  Mean:   0.6186
+  Median: 0.6192
+  Min:    0.5181
+  Max:    0.8814
+  Std:    0.0664
+
+Comparison vs. Baseline:
+  States where |GLMER − Baseline| > 0.10: 22 / 51

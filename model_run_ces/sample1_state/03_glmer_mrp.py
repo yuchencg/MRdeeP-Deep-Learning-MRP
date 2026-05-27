@@ -4,9 +4,12 @@ with random intercepts on demographics + geography and poststratification to sta
 CES run: sample_ces_1000, state-level estimates.
 """
 
+import os
 import sys
 import warnings
 from pathlib import Path
+
+os.environ["OMP_NUM_THREADS"] = "1"   # prevents segfault on arm64 macOS with gpboost OpenMP
 
 import gpboost as gpb
 import numpy as np
@@ -22,8 +25,9 @@ from utils import (
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-OUTCOME_VARS  = ["climate_problem", "renewable_fuel"]
-MODEL_BASE    = "glmer_mrp"
+DATA_DIR      = Path(__file__).resolve().parent.parent.parent
+OUTCOME       = ["climate_problem", "renewable_fuel"]
+MODEL_NAME    = "glmer_mrp"
 GROUPING_VARS = ["race4", "educ_category", "gender", "region9", "state_fips"]
 COVARIATES    = [
     "co2_per_capita",
@@ -46,9 +50,7 @@ X_pred = np.column_stack([
 
 # ── Run for each outcome ──────────────────────────────────────────────────────
 
-for OUTCOME_VAR in OUTCOME_VARS:
-    MODEL_NAME = f"{MODEL_BASE}_{OUTCOME_VAR}"
-
+for OUTCOME_VAR in OUTCOME:
     survey = load_survey(OUTCOME_VAR)
     for col in GROUPING_VARS:
         survey[col] = survey[col].astype(str)
@@ -89,24 +91,29 @@ for OUTCOME_VAR in OUTCOME_VARS:
     estimates = estimates.merge(n_resp, on="state_fips", how="left")
     estimates["n_respondents"] = estimates["n_respondents"].fillna(0).astype(int)
 
-    save_estimates(estimates, MODEL_NAME)
+    save_estimates(estimates, MODEL_NAME, OUTCOME_VAR)
 
-    # compare against baseline if available
+    # compare against baseline using the combined output file
     import pandas as pd
-    baseline_path = OUTPUT_DIR / "estimates" / f"baseline_{OUTCOME_VAR}_state_estimates.csv"
+    baseline_path = OUTPUT_DIR / "estimates" / "climate_problem_state_estimates.csv" \
+        if OUTCOME_VAR == "climate_problem" \
+        else OUTPUT_DIR / "estimates" / "renewable_fuel_state_estimates.xlsx"
     diff_count = None
     if baseline_path.exists():
-        baseline = pd.read_csv(baseline_path, dtype={"state_fips": str})
-        merged = estimates.merge(
-            baseline[["state_fips", "estimate"]].rename(columns={"estimate": "baseline_estimate"}),
-            on="state_fips", how="left",
-        )
-        merged["abs_diff"] = (merged["estimate"] - merged["baseline_estimate"]).abs()
-        diff_count = int((merged["abs_diff"] > 0.10).sum())
+        base_df = (pd.read_excel(baseline_path, dtype={"state_fips": str})
+                   if str(baseline_path).endswith(".xlsx")
+                   else pd.read_csv(baseline_path, dtype={"state_fips": str}))
+        if "baseline" in base_df.columns:
+            merged = estimates.merge(
+                base_df[["state_fips", "baseline"]].rename(columns={"baseline": "baseline_estimate"}),
+                on="state_fips", how="left",
+            )
+            merged["abs_diff"] = (merged["estimate"] - merged["baseline_estimate"]).abs()
+            diff_count = int((merged["abs_diff"] > 0.10).sum())
 
     diag_dir  = OUTPUT_DIR / "diagnostics"
     diag_dir.mkdir(parents=True, exist_ok=True)
-    diag_path = diag_dir / f"{MODEL_NAME}_summary.txt"
+    diag_path = diag_dir / f"{MODEL_NAME}_{OUTCOME_VAR}_summary.txt"
     valid_estimates = estimates["estimate"].dropna()
 
     with open(diag_path, "w") as f:

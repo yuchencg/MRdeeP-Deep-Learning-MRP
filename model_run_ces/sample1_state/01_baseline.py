@@ -18,14 +18,13 @@ from utils import (
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-OUTCOME_VARS = ["climate_problem", "renewable_fuel"]
-MODEL_BASE   = "baseline"
+DATA_DIR   = Path(__file__).resolve().parent.parent.parent
+OUTCOME    = ["climate_problem", "renewable_fuel"]
+MODEL_NAME = "baseline"
 
 # ── Run for each outcome ──────────────────────────────────────────────────────
 
-for OUTCOME_VAR in OUTCOME_VARS:
-    MODEL_NAME = f"{MODEL_BASE}_{OUTCOME_VAR}"
-
+for OUTCOME_VAR in OUTCOME:
     survey = load_survey(OUTCOME_VAR)
 
     state_stats = survey.groupby("state_fips").agg(
@@ -40,7 +39,7 @@ for OUTCOME_VAR in OUTCOME_VARS:
     estimates = all_states.merge(state_stats, on="state_fips", how="left")
     estimates["n_respondents"] = estimates["n_respondents"].fillna(0).astype(int)
 
-    save_estimates(estimates, MODEL_NAME)
+    save_estimates(estimates, MODEL_NAME, OUTCOME_VAR)
 
     n_with    = estimates["estimate"].notna().sum()
     n_without = estimates["estimate"].isna().sum()
@@ -48,7 +47,7 @@ for OUTCOME_VAR in OUTCOME_VARS:
 
     diag_dir  = OUTPUT_DIR / "diagnostics"
     diag_dir.mkdir(parents=True, exist_ok=True)
-    diag_path = diag_dir / f"{MODEL_NAME}_summary.txt"
+    diag_path = diag_dir / f"{MODEL_NAME}_{OUTCOME_VAR}_summary.txt"
 
     with open(diag_path, "w") as f:
         f.write(f"Baseline (Naive Disaggregation) — Diagnostic Summary\n")

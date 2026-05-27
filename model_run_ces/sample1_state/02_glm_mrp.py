@@ -22,8 +22,9 @@ from utils import (
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-OUTCOME_VARS  = ["climate_problem", "renewable_fuel"]
-MODEL_BASE    = "glm_mrp"
+DATA_DIR      = Path(__file__).resolve().parent.parent.parent
+OUTCOME       = ["climate_problem", "renewable_fuel"]
+MODEL_NAME    = "glm_mrp"
 CATEGORICALS  = ["gender", "race4", "educ_category", "region9"]
 COVARIATES    = "co2_per_capita + dem_share_two_party + drive_alone_share + samesex_share"
 
@@ -35,9 +36,8 @@ for col in CATEGORICALS:
 
 # ── Run for each outcome ──────────────────────────────────────────────────────
 
-for OUTCOME_VAR in OUTCOME_VARS:
-    MODEL_NAME = f"{MODEL_BASE}_{OUTCOME_VAR}"
-    FORMULA    = (
+for OUTCOME_VAR in OUTCOME:
+    FORMULA   = (
         f"{OUTCOME_VAR} ~ C(gender) + C(race4) + C(educ_category) + C(region9)"
         f" + {COVARIATES}"
     )
@@ -67,11 +67,11 @@ for OUTCOME_VAR in OUTCOME_VARS:
     estimates = estimates.merge(n_resp, on="state_fips", how="left")
     estimates["n_respondents"] = estimates["n_respondents"].fillna(0).astype(int)
 
-    save_estimates(estimates, MODEL_NAME)
+    save_estimates(estimates, MODEL_NAME, OUTCOME_VAR)
 
     diag_dir  = OUTPUT_DIR / "diagnostics"
     diag_dir.mkdir(parents=True, exist_ok=True)
-    diag_path = diag_dir / f"{MODEL_NAME}_summary.txt"
+    diag_path = diag_dir / f"{MODEL_NAME}_{OUTCOME_VAR}_summary.txt"
     valid_estimates = estimates["estimate"].dropna()
 
     with open(diag_path, "w") as f:

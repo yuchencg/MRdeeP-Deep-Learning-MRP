@@ -23,19 +23,19 @@ import xgboost as xgb
 
 sys.path.insert(0, str(Path(__file__).parent))
 from utils import (
-    BASE_DIR,
     OUTPUT_DIR,
     STATE_FIPS_TO_NAME,
     POSTSTRAT_STATE_PATH,
-    _load_state_covariates,
-    _recode_demographics,
     SURVEY_PATH,
+    _load_state_covariates,
+    save_estimates,
 )
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-OUTCOME_VARS = ["climate_problem", "renewable_fuel"]
-MODEL_BASE   = "srp"
+DATA_DIR   = Path(__file__).resolve().parent.parent.parent
+OUTCOME    = ["climate_problem", "renewable_fuel"]
+MODEL_NAME = "srp"
 SEED         = 42
 N_FOLDS      = 5
 DEMOG        = ["gender", "race4", "educ_category", "state_fips"]
@@ -170,14 +170,12 @@ def fit_xgb(y_tr, X_tr):
 
 import time
 
-for OUTCOME_VAR in OUTCOME_VARS:
-    MODEL_NAME = f"{MODEL_BASE}_{OUTCOME_VAR}"
+for OUTCOME_VAR in OUTCOME:
     print(f"\n{'='*60}\nOutcome: {OUTCOME_VAR}\n{'='*60}")
     start = time.time()
 
-    # load & recode survey
+    # load survey
     raw = pd.read_csv(SURVEY_PATH, dtype={"state_fips": str})
-    raw = _recode_demographics(raw)
     survey = raw.dropna(subset=["gender", "educ_category", OUTCOME_VAR]).copy()
     survey["educ_category"] = survey["educ_category"].astype(str)
 
@@ -276,14 +274,11 @@ for OUTCOME_VAR in OUTCOME_VARS:
     result = result.merge(n_resp, on="state_fips", how="left")
     result["n_respondents"] = result["n_respondents"].fillna(0).astype(int)
 
-    out_dir  = OUTPUT_DIR / "estimates"
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = out_dir / f"{MODEL_NAME}_state_estimates.csv"
-    result[["state_fips", "state_name", "estimate", "n_respondents"]].to_csv(out_path, index=False)
+    save_estimates(result, MODEL_NAME, OUTCOME_VAR)
 
     diag_dir  = OUTPUT_DIR / "diagnostics"
     diag_dir.mkdir(parents=True, exist_ok=True)
-    diag_path = diag_dir / f"{MODEL_NAME}_summary.txt"
+    diag_path = diag_dir / f"{MODEL_NAME}_{OUTCOME_VAR}_summary.txt"
     valid = result["estimate"].dropna()
 
     with open(diag_path, "w") as f:
@@ -305,6 +300,5 @@ for OUTCOME_VAR in OUTCOME_VARS:
         f.write(result[["state_fips", "state_name", "estimate"]].to_string(index=False))
 
     elapsed = (time.time() - start) / 60
-    print(f"\nSaved → {out_path}")
     print(f"Diagnostics → {diag_path}")
     print(f"Elapsed: {elapsed:.1f} min")

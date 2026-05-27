@@ -1,0 +1,53 @@
+GLM-MRP — Diagnostic Summary
+=======================================================
+
+Outcome variable: renewable_fuel
+Formula: renewable_fuel ~ C(gender) + C(race4) + C(educ_category) + C(region9) + co2_per_capita + dem_share_two_party + drive_alone_share + samesex_share
+Observations: 988
+Pseudo R-squared (McFadden): 0.0324
+
+Convergence warnings: none
+
+Model Summary:
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:         renewable_fuel   No. Observations:                  988
+Model:                            GLM   Df Residuals:                      968
+Model Family:                Binomial   Df Model:                           19
+Link Function:                  Logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -643.30
+Date:                Mon, 25 May 2026   Deviance:                       1286.6
+Time:                        15:42:48   Pearson chi2:                     986.
+No. Iterations:                     4   Pseudo R-squ. (CS):            0.04269
+Covariance Type:            nonrobust                                         
+==================================================================================================
+                                     coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------
+Intercept                          0.6628      2.614      0.254      0.800      -4.461       5.787
+C(gender)[T.Male]                  0.0393      0.134      0.293      0.769      -0.223       0.302
+C(race4)[T.Hispanic]              -0.0321      0.286     -0.112      0.911      -0.593       0.529
+C(race4)[T.Other]                 -0.1927      0.311     -0.620      0.535      -0.802       0.416
+C(race4)[T.White]                 -0.5961      0.214     -2.785      0.005      -1.016      -0.177
+C(educ_category)[T.2]              0.1185      0.276      0.430      0.667      -0.422       0.658
+C(educ_category)[T.3]              0.1503      0.272      0.553      0.580      -0.382       0.683
+C(educ_category)[T.4]              0.3818      0.274      1.395      0.163      -0.155       0.918
+C(region9)[T.E. South Central]    -0.2531      0.362     -0.700      0.484      -0.962       0.456
+C(region9)[T.Mid-Atlantic]         0.4635      0.374      1.241      0.215      -0.269       1.196
+C(region9)[T.Mountain]            -0.1739      0.334     -0.520      0.603      -0.829       0.481
+C(region9)[T.New England]         -0.1283      0.432     -0.297      0.767      -0.975       0.719
+C(region9)[T.Pacific]             -0.2521      0.338     -0.747      0.455      -0.914       0.410
+C(region9)[T.South Atlantic]      -0.0954      0.250     -0.381      0.703      -0.586       0.395
+C(region9)[T.W. North Central]    -0.1851      0.317     -0.583      0.560      -0.807       0.437
+C(region9)[T.W. South Central]    -0.4897      0.311     -1.576      0.115      -1.098       0.119
+co2_per_capita                     0.0088      0.012      0.742      0.458      -0.014       0.032
+dem_share_two_party               -0.6469      1.748     -0.370      0.711      -4.073       2.779
+drive_alone_share                 -1.0891      2.427     -0.449      0.654      -5.846       3.668
+samesex_share                    110.0450     65.754      1.674      0.094     -18.831     238.921
+==================================================================================================
+
+State Estimate Summary:
+  Mean:   0.5865
+  Median: 0.5760
+  Min:    0.4176
+  Max:    0.9350
+  Std:    0.0912
