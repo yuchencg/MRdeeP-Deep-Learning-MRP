@@ -1,0 +1,17 @@
+# Python dependencies for deepverse conda environment
+# Install with: pip install -r requirements.txt
+#
+# R dependencies (must be installed separately in R):
+#   install.packages("rstanarm")   -- required by 04_glmerstan.ipynb
+#   install.packages("lme4")       -- required by 03_glmer_mrp
+
+numpy>=2.3
+pandas>=2.3
+scipy>=1.16
+scikit-learn>=1.7
+torch>=2.10
+torchsummary>=1.5
+torchvision>=0.25
+
+# R bridge -- required by 04_glmerstan.ipynb (rstanarm via rpy2)
+rpy2>=3.6

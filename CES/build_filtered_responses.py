@@ -11,6 +11,7 @@ Output:
   - data_processed/filtered_responses_preprocessing.dta
     Outcome vars are renamed (see RENAME_MAP) and support/oppose items
     recoded to binary 1=Support / 0=Oppose (see SUPPORT_BINARY_VARS).
+    demographics are recoded to ACS poststrat frame categories
 
 Defaults (edit the CONFIG block to change):
   - Keeps both pre-wave weights: commonweight, vvweight
@@ -373,6 +374,15 @@ def main() -> None:
         )
         value_labels["climate_problem"] = {1: "Climate action needed", 0: "No action needed"}
         print("Recoded climate_problem: cat 1-2 → 1 (action needed), cat 3-5 → 0 (no action)")
+
+    # --- Drop rows with missing outcome variables ---
+    outcome_vars = [v for v in RENAME_MAP.values() if v in out.columns]
+    before_drop = len(out)
+    out = out.dropna(subset=outcome_vars).copy()
+    print(
+        f"Dropped {before_drop - len(out):,} rows with NA in outcome vars "
+        f"({len(out):,} valid respondents remain)"
+    )
 
     # --- Recode demographics to ACS poststrat frame categories ---
     if "gender4" in out.columns:

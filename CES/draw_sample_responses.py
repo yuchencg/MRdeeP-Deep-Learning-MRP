@@ -32,7 +32,7 @@ import pandas as pd
 # CONFIG
 # ---------------------------------------------------------------------------
 ROOT    = Path(__file__).resolve().parent
-DTA_IN  = ROOT / "data_processed" / "filtered_responses_preprocessing.dta"
+CSV_IN  = ROOT / "data_processed" / "filtered_responses_preprocessed.csv"
 OUT_DIR = ROOT / "data_processed"
 
 N_SAMPLES   = [1_000, 3_000, 5_000]
@@ -92,8 +92,8 @@ def draw_sample(df: pd.DataFrame, state_meta: pd.DataFrame, n_sample: int) -> pd
 def main() -> None:
     warnings.filterwarnings("ignore", category=pd.errors.DtypeWarning)
 
-    print(f"Reading {DTA_IN.name} ...")
-    df = pd.read_stata(str(DTA_IN), convert_categoricals=False)
+    print(f"Reading {CSV_IN.name} ...")
+    df = pd.read_csv(str(CSV_IN), dtype={"state_fips": str, "county_fips": str})
     print(f"  {len(df):,} rows, {df.shape[1]} columns, {df['state_fips'].nunique()} states")
 
     # --- Build per-state population table ---
