@@ -1,0 +1,59 @@
+GLMER-MRP — Diagnostic Summary
+=======================================================
+
+Outcome variable: climate_problem
+Likelihood: bernoulli_logit (Laplace approximation)
+Grouping variables: ['race4', 'educ_category', 'gender', 'region9', 'state_fips']
+Fixed effects: intercept + ['co2_per_capita', 'dem_share_two_party', 'drive_alone_share', 'samesex_share']
+Observations: 2977
+
+Convergence warnings: none
+
+Random Effect Variance Components:
+  race4                 variance = 0.091207
+  educ_category         variance = 0.035254
+  gender                variance = 0.049642
+  region9               variance = 0.002009
+  state_fips            variance = 0.000001
+
+Fixed Effect Coefficients:
+  intercept             estimate = 1.701293
+  co2_per_capita        estimate = 0.001620
+  dem_share_two_party   estimate = 0.086773
+  drive_alone_share     estimate = -1.914479
+  samesex_share         estimate = 31.673878
+
+Full gpboost summary:
+=====================================================
+Model summary:
+Nb. observations: 2977
+Nb. groups: 4 (Group_1), 4 (Group_2), 2 (Group_3), 9 (Group_4), 51 (Group_5)
+ Log-lik     AIC     BIC
+-1912.49 3844.99 3904.98
+-----------------------------------------------------
+Covariance parameters (random effects):
+         Param.
+Group_1  0.0912
+Group_2  0.0353
+Group_3  0.0496
+Group_4  0.0020
+Group_5  0.0000
+-----------------------------------------------------
+Linear regression coefficients (fixed effects):
+              Param.  Std. err.  z value  P(>|z|)
+Covariate_1   1.7013     0.9454   1.7995   0.0719
+Covariate_2   0.0016     0.0060   0.2718   0.7858
+Covariate_3   0.0868     0.7773   0.1116   0.9111
+Covariate_4  -1.9145     0.8962  -2.1361   0.0327
+Covariate_5  31.6739    27.3653   1.1574   0.2471
+=====================================================
+
+State Estimate Summary:
+  Mean:   0.6124
+  Median: 0.6089
+  Min:    0.5212
+  Max:    0.8936
+  Std:    0.0634
+
+Comparison vs. Baseline:
+  States where |GLMER − Baseline| > 0.10: 13 / 51

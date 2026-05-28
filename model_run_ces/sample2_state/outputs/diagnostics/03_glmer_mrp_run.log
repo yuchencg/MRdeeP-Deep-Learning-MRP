@@ -1,0 +1,30 @@
+
+============================================================
+  glmer_mrp (climate_problem) — State-Level Estimates
+============================================================
+  States with estimates: 51
+  States with NaN:       0
+  Mean estimate:         0.6124
+  Median estimate:       0.6089
+  Min estimate:          0.5212
+  Max estimate:          0.8936
+
+  Saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/estimates/climate_problem_state_estimates.csv
+============================================================
+
+Diagnostic summary saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/diagnostics/glmer_mrp_climate_problem_summary.txt
+
+============================================================
+  glmer_mrp (renewable_fuel) — State-Level Estimates
+============================================================
+  States with estimates: 51
+  States with NaN:       0
+  Mean estimate:         0.5745
+  Median estimate:       0.5806
+  Min estimate:          0.3012
+  Max estimate:          0.7668
+
+  Saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/estimates/renewable_fuel_state_estimates.csv
+============================================================
+
+Diagnostic summary saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/diagnostics/glmer_mrp_renewable_fuel_summary.txt

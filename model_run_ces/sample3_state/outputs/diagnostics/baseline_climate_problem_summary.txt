@@ -1,0 +1,70 @@
+Baseline (Naive Disaggregation) — Diagnostic Summary
+=======================================================
+
+Outcome variable: climate_problem
+Total survey respondents (non-NaN): 4962
+States with estimates: 51
+States with NaN (no respondents): 0
+
+Estimate range: [0.3881, 0.9048]
+Mean estimate: 0.6425
+Median estimate: 0.6471
+
+Respondents per state:
+  Min: 9
+  Max: 583
+  Mean: 97.3
+
+State-level estimates:
+state_fips           state_name  estimate  n_respondents
+        01              Alabama  0.394737             76
+        02               Alaska  0.818182             11
+        04              Arizona  0.609091            110
+        05             Arkansas  0.543478             46
+        06           California  0.747856            583
+        08             Colorado  0.590909             88
+        09          Connecticut  0.777778             54
+        10             Delaware  0.600000             15
+        11 District of Columbia  0.900000             10
+        12              Florida  0.597015            335
+        13              Georgia  0.685185            162
+        15               Hawaii  0.761905             21
+        16                Idaho  0.655172             29
+        17             Illinois  0.666667            189
+        18              Indiana  0.647059            102
+        19                 Iowa  0.750000             48
+        20               Kansas  0.488372             43
+        21             Kentucky  0.388060             67
+        22            Louisiana  0.463768             69
+        23                Maine  0.904762             21
+        24             Maryland  0.663043             92
+        25        Massachusetts  0.757282            103
+        26             Michigan  0.557823            147
+        27            Minnesota  0.600000             85
+        28          Mississippi  0.681818             44
+        29             Missouri  0.516484             91
+        30              Montana  0.529412             17
+        31             Nebraska  0.620690             29
+        32               Nevada  0.562500             48
+        33        New Hampshire  0.666667             21
+        34           New Jersey  0.697842            139
+        35           New Mexico  0.718750             32
+        36             New York  0.756849            292
+        37       North Carolina  0.569620            158
+        38         North Dakota  0.500000             12
+        39                 Ohio  0.603448            174
+        40             Oklahoma  0.576271             59
+        41               Oregon  0.709677             62
+        42         Pennsylvania  0.598958            192
+        44         Rhode Island  0.666667             15
+        45       South Carolina  0.544304             79
+        46         South Dakota  0.500000             14
+        47            Tennessee  0.660377            106
+        48                Texas  0.615730            445
+        49                 Utah  0.647059             51
+        50              Vermont  0.900000             10
+        51             Virginia  0.734375            128
+        53           Washington  0.681034            116
+        54        West Virginia  0.576923             26
+        55            Wisconsin  0.586207             87
+        56              Wyoming  0.777778              9
