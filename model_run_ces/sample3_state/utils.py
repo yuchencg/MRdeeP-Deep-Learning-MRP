@@ -13,7 +13,7 @@ import pandas as pd
 BASE_DIR   = Path(__file__).resolve().parent.parent.parent
 DATA_DIR   = BASE_DIR / "post_stratification_frame"
 CES_DIR    = BASE_DIR / "CES" / "data_processed"
-COV_DIR    = BASE_DIR / "test_data" / "raw"
+COV_DIR    = BASE_DIR / "CES" / "data_processed" / "covariates"
 OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
 
 SURVEY_PATH          = CES_DIR / "sample_ces_5000.csv"
