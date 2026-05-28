@@ -1,0 +1,30 @@
+
+============================================================
+  baseline (climate_problem) — State-Level Estimates
+============================================================
+  States with estimates: 51
+  States with NaN:       0
+  Mean estimate:         0.6207
+  Median estimate:       0.6316
+  Min estimate:          0.3750
+  Max estimate:          0.8462
+
+  Saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/estimates/climate_problem_state_estimates.csv
+============================================================
+
+Diagnostic summary saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/diagnostics/baseline_climate_problem_summary.txt
+
+============================================================
+  baseline (renewable_fuel) — State-Level Estimates
+============================================================
+  States with estimates: 51
+  States with NaN:       0
+  Mean estimate:         0.5808
+  Median estimate:       0.5789
+  Min estimate:          0.2857
+  Max estimate:          0.8571
+
+  Saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/estimates/renewable_fuel_state_estimates.csv
+============================================================
+
+Diagnostic summary saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/diagnostics/baseline_renewable_fuel_summary.txt

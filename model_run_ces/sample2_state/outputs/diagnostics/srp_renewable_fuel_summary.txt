@@ -1,0 +1,75 @@
+SRP — Diagnostic Summary
+=======================================================
+
+Outcome variable: renewable_fuel
+Base learners: HLM, LASSO, KNN, RF, XGBoost
+CV folds: 5
+Observations: 2977
+
+Stack weights:
+  HLM      0.2159
+  LASSO    0.4654
+  KNN      0.1400
+  RF       0.0114
+  XGBoost  0.1673
+
+State Estimate Summary:
+  Mean:   0.6015
+  Median: 0.5970
+  Min:    0.5330
+  Max:    0.6914
+  Std:    0.0351
+
+State-level estimates:
+state_fips           state_name  estimate
+        01              Alabama  0.597375
+        02               Alaska  0.622306
+        04              Arizona  0.620657
+        05             Arkansas  0.567083
+        06           California  0.661947
+        08             Colorado  0.622471
+        09          Connecticut  0.648289
+        10             Delaware  0.614314
+        11 District of Columbia  0.691414
+        12              Florida  0.612889
+        13              Georgia  0.633019
+        15               Hawaii  0.641464
+        16                Idaho  0.583245
+        17             Illinois  0.657025
+        18              Indiana  0.575245
+        19                 Iowa  0.575576
+        20               Kansas  0.583100
+        21             Kentucky  0.558667
+        22            Louisiana  0.571880
+        23                Maine  0.570662
+        24             Maryland  0.662352
+        25        Massachusetts  0.623771
+        26             Michigan  0.597008
+        27            Minnesota  0.586173
+        28          Mississippi  0.620113
+        29             Missouri  0.565920
+        30              Montana  0.581271
+        31             Nebraska  0.572460
+        32               Nevada  0.594154
+        33        New Hampshire  0.581608
+        34           New Jersey  0.653669
+        35           New Mexico  0.617102
+        36             New York  0.673468
+        37       North Carolina  0.620764
+        38         North Dakota  0.552879
+        39                 Ohio  0.588589
+        40             Oklahoma  0.551051
+        41               Oregon  0.598099
+        42         Pennsylvania  0.608807
+        44         Rhode Island  0.618260
+        45       South Carolina  0.604582
+        46         South Dakota  0.571611
+        47            Tennessee  0.576242
+        48                Texas  0.570994
+        49                 Utah  0.581264
+        50              Vermont  0.576993
+        51             Virginia  0.625747
+        53           Washington  0.619346
+        54        West Virginia  0.532966
+        55            Wisconsin  0.587373
+        56              Wyoming  0.551159

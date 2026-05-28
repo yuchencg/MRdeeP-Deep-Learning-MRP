@@ -1,0 +1,59 @@
+GLMER-MRP — Diagnostic Summary
+=======================================================
+
+Outcome variable: climate_problem
+Likelihood: bernoulli_logit (Laplace approximation)
+Grouping variables: ['race4', 'educ_category', 'gender', 'region9', 'state_fips']
+Fixed effects: intercept + ['co2_per_capita', 'dem_share_two_party', 'drive_alone_share', 'samesex_share']
+Observations: 4962
+
+Convergence warnings: none
+
+Random Effect Variance Components:
+  race4                 variance = 0.057595
+  educ_category         variance = 0.029106
+  gender                variance = 0.016861
+  region9               variance = 0.003243
+  state_fips            variance = 0.000010
+
+Fixed Effect Coefficients:
+  intercept             estimate = 1.397083
+  co2_per_capita        estimate = 0.000901
+  dem_share_two_party   estimate = 1.543202
+  drive_alone_share     estimate = -2.009536
+  samesex_share         estimate = 0.916569
+
+Full gpboost summary:
+=====================================================
+Model summary:
+Nb. observations: 4962
+Nb. groups: 4 (Group_1), 4 (Group_2), 2 (Group_3), 9 (Group_4), 51 (Group_5)
+ Log-lik     AIC     BIC
+-3150.23 6320.47 6385.56
+-----------------------------------------------------
+Covariance parameters (random effects):
+         Param.
+Group_1  0.0576
+Group_2  0.0291
+Group_3  0.0169
+Group_4  0.0032
+Group_5  0.0000
+-----------------------------------------------------
+Linear regression coefficients (fixed effects):
+             Param.  Std. err.  z value  P(>|z|)
+Covariate_1  1.3971     0.7819   1.7867   0.0740
+Covariate_2  0.0009     0.0046   0.1947   0.8456
+Covariate_3  1.5432     0.6265   2.4631   0.0138
+Covariate_4 -2.0095     0.7446  -2.6989   0.0070
+Covariate_5  0.9166    22.2551   0.0412   0.9671
+=====================================================
+
+State Estimate Summary:
+  Mean:   0.6258
+  Median: 0.6271
+  Min:    0.4934
+  Max:    0.9109
+  Std:    0.0796
+
+Comparison vs. Baseline:
+  States where |GLMER − Baseline| > 0.10: 11 / 51

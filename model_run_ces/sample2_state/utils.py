@@ -1,5 +1,5 @@
 """
-Shared utilities for CES model run (sample1_state) — data loading, demographic
+Shared utilities for CES model run (sample2_state) — data loading, demographic
 recoding, poststratification, and output.
 """
 
@@ -16,7 +16,7 @@ CES_DIR    = BASE_DIR / "CES" / "data_processed"
 COV_DIR    = BASE_DIR / "CES" / "data_processed" / "covariates"
 OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
 
-SURVEY_PATH          = CES_DIR / "sample_ces_1000.csv"
+SURVEY_PATH          = CES_DIR / "sample_ces_3000.csv"
 POSTSTRAT_STATE_PATH = DATA_DIR / "poststrat_state.csv"
 CARBON_PATH          = COV_DIR / "carbon_state.csv"
 PRES_PATH            = COV_DIR / "pres_state.csv"

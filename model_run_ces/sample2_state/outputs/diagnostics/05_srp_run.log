@@ -1,0 +1,96 @@
+
+============================================================
+Outcome: climate_problem
+============================================================
+Respondents: 2,977  (62.8% support)
+Label shape: (2977, 4)  |  OHE shape: (2977, 61)
+Fold 1/5
+  KNN best k=85
+  XGBoost best n_rounds=31
+Fold 2/5
+  KNN best k=80
+  XGBoost best n_rounds=23
+Fold 3/5
+  KNN best k=80
+  XGBoost best n_rounds=34
+Fold 4/5
+  KNN best k=196
+  XGBoost best n_rounds=23
+Fold 5/5
+  KNN best k=71
+  XGBoost best n_rounds=43
+
+Stack weights (HLM / LASSO / KNN / RF / XGBoost):
+  HLM      0.1395
+  LASSO    0.6296
+  KNN      0.2055
+  RF       0.0000
+  XGBoost  0.0254
+
+Retraining on full dataset...
+  KNN best k=201
+  XGBoost best n_rounds=42
+
+============================================================
+  srp (climate_problem) — State-Level Estimates
+============================================================
+  States with estimates: 51
+  States with NaN:       0
+  Mean estimate:         0.6187
+  Median estimate:       0.6113
+  Min estimate:          0.5619
+  Max estimate:          0.7007
+
+  Saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/estimates/climate_problem_state_estimates.csv
+============================================================
+
+Diagnostics → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/diagnostics/srp_climate_problem_summary.txt
+Elapsed: 0.6 min
+
+============================================================
+Outcome: renewable_fuel
+============================================================
+Respondents: 2,977  (60.0% support)
+Label shape: (2977, 4)  |  OHE shape: (2977, 61)
+Fold 1/5
+  KNN best k=199
+  XGBoost best n_rounds=22
+Fold 2/5
+  KNN best k=97
+  XGBoost best n_rounds=26
+Fold 3/5
+  KNN best k=90
+  XGBoost best n_rounds=29
+Fold 4/5
+  KNN best k=122
+  XGBoost best n_rounds=39
+Fold 5/5
+  KNN best k=76
+  XGBoost best n_rounds=25
+
+Stack weights (HLM / LASSO / KNN / RF / XGBoost):
+  HLM      0.2159
+  LASSO    0.4654
+  KNN      0.1400
+  RF       0.0114
+  XGBoost  0.1673
+
+Retraining on full dataset...
+  KNN best k=120
+  XGBoost best n_rounds=43
+
+============================================================
+  srp (renewable_fuel) — State-Level Estimates
+============================================================
+  States with estimates: 51
+  States with NaN:       0
+  Mean estimate:         0.6015
+  Median estimate:       0.5970
+  Min estimate:          0.5330
+  Max estimate:          0.6914
+
+  Saved → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/estimates/renewable_fuel_state_estimates.csv
+============================================================
+
+Diagnostics → /Users/kaeleyoshea/Capstone/A.MRdeeP-Deep-Learning--MRP/model_run_ces/sample2_state/outputs/diagnostics/srp_renewable_fuel_summary.txt
+Elapsed: 0.6 min
