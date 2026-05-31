@@ -1,0 +1,7 @@
+Model,Ground Truth Mean,"Mean Abs Diff from Ground Truth (n=1,000)","Mean Abs Diff from Ground Truth (n=3,000)","Mean Abs Diff from Ground Truth (n=5,000)"
+Naive,0.6313,0.1125,0.0721,0.0535
+GLM-MRP,0.6313,0.0642,0.0379,0.0336
+GLMER-MRP,0.6313,0.0539,0.043,0.0358
+GLMERStan,0.6313,0.0539,0.0403,0.0283
+SRP,0.6313,0.0564,0.0537,0.038
+MRdeeP,0.6313,0.0744,0.0802,0.067

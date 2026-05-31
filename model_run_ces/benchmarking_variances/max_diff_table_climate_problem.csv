@@ -1,0 +1,7 @@
+Model,Ground Truth Mean,"Max Abs Diff from Ground Truth (n=1,000)","Max Abs Diff from Ground Truth (n=3,000)","Max Abs Diff from Ground Truth (n=5,000)"
+Naive,0.6313,50% (Hawaii),25% (Montana),24% (Wyoming)
+GLM-MRP,0.6313,35% (Wyoming),14% (Alabama),12% (South Dakota)
+GLMER-MRP,0.6313,27% (Wyoming),19% (Vermont),13% (Vermont)
+GLMERStan,0.6313,27% (North Dakota),17% (Vermont),11% (Vermont)
+SRP,0.6313,20% (Vermont),22% (Vermont),19% (Vermont)
+MRdeeP,0.6313,25% (Vermont),26% (District of Columbia),22% (Vermont)

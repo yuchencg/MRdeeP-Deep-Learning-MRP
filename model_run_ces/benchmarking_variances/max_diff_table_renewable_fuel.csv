@@ -1,0 +1,7 @@
+Model,Ground Truth Mean,"Max Abs Diff from Ground Truth (n=1,000)","Max Abs Diff from Ground Truth (n=3,000)","Max Abs Diff from Ground Truth (n=5,000)"
+Naive,0.596,50% (South Dakota),25% (Maine),15% (New Hampshire)
+GLM-MRP,0.596,25% (North Dakota),15% (Delaware),17% (Delaware)
+GLMER-MRP,0.596,16% (District of Columbia),13% (Wyoming),10% (Delaware)
+GLMERStan,0.596,N/A,11% (Maine),11% (Delaware)
+SRP,0.596,27% (North Dakota),22% (North Dakota),21% (North Dakota)
+MRdeeP,0.596,30% (North Dakota),28% (District of Columbia),36% (North Dakota)
