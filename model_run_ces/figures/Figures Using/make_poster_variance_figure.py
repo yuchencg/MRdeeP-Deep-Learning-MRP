@@ -99,7 +99,7 @@ def draw_panel(ax, df, order, sample_n):
     ax.grid(axis="x", color=GRID, linewidth=0.8, zorder=0)
     ax.set_axisbelow(True)
     n_total = int(df["n_respondents"].sum())
-    ax.set_title(f"sample {sample_n}  ·  n = {n_total}", fontsize=11,
+    ax.set_title(f"sample {sample_n}  ·  n = {n_total:,}", fontsize=11,
                  loc="left", color=UCSD_NAVY, fontweight="bold")
 
 
@@ -139,7 +139,7 @@ def build_figure(samples, order):
              color=UCSD_NAVY)
     fig.text(0.5, 0.905,
              "Line spans min/max across models (percentage points)",
-             ha="center", va="center", fontsize=10, fontweight="normal",
+             ha="center", va="center", fontsize=10.5, fontweight="normal",
              color="#555555")
 
     # Shared legend at the bottom
