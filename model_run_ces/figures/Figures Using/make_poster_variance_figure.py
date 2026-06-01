@@ -28,7 +28,6 @@ OUTCOME_TITLE = "climate_change_problem"     # display name in title
 N_EXTREME = 3
 
 MODEL_COLS = ["glm_mrp", "glmer_mrp", "srp", "glmerstan"]
-BASELINE_COL = "baseline"
 
 # ---------- UC San Diego palette ----------
 UCSD_NAVY = "#182B49"
@@ -44,7 +43,6 @@ MODEL_STYLE = {
     "srp":       {"marker": "^", "color": UCSD_GOLD},
     "glmerstan": {"marker": "P", "color": UCSD_TEAL},
 }
-BASELINE_STYLE = {"marker": "x", "color": "#8A8A8A"}
 
 X_AXIS_LABEL = "Estimated proportion affirming climate change is a problem"
 
@@ -87,9 +85,6 @@ def draw_panel(ax, df, order, sample_n):
         st = MODEL_STYLE[model]
         ax.scatter(df_ord[model], ys, marker=st["marker"], color=st["color"],
                    s=46, zorder=3, label=model, edgecolor="white", linewidth=0.5)
-    ax.scatter(df_ord[BASELINE_COL], ys, marker=BASELINE_STYLE["marker"],
-               color=BASELINE_STYLE["color"], s=50, zorder=2, label="baseline",
-               linewidth=1.6)
 
     ax.set_xlim(-0.04, 1.04)
     ax.set_xticks([0, .25, .5, .75, 1])
@@ -143,8 +138,7 @@ def build_figure(samples, order):
              ha="center", va="center", fontsize=15, fontweight="bold",
              color=UCSD_NAVY)
     fig.text(0.5, 0.905,
-             "Line spans min/max across models (percentage points); "
-             "baseline shown as ×",
+             "Line spans min/max across models (percentage points)",
              ha="center", va="center", fontsize=10, fontweight="normal",
              color="#555555")
 
