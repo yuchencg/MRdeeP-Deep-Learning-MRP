@@ -1,0 +1,52 @@
+state_fips,state_name,mrdeep
+01,Alabama,0.5895004
+02,Alaska,0.59335446
+04,Arizona,0.5608741
+05,Arkansas,0.59246385
+06,California,0.6076723
+08,Colorado,0.61721116
+09,Connecticut,0.5790198
+10,Delaware,0.61292416
+11,District of Columbia,0.6060228
+12,Florida,0.60718757
+13,Georgia,0.5980874
+15,Hawaii,0.5799449
+16,Idaho,0.5974665
+17,Illinois,0.59399265
+18,Indiana,0.5901609
+19,Iowa,0.6026408
+20,Kansas,0.57858086
+21,Kentucky,0.5809858
+22,Louisiana,0.5907108
+23,Maine,0.6073579
+24,Maryland,0.60699856
+25,Massachusetts,0.5970687
+26,Michigan,0.5985403
+27,Minnesota,0.6005293
+28,Mississippi,0.6176775
+29,Missouri,0.6169768
+30,Montana,0.58895653
+31,Nebraska,0.5910018
+32,Nevada,0.60115534
+33,New Hampshire,0.5938901
+34,New Jersey,0.6021724
+35,New Mexico,0.59354365
+36,New York,0.59869844
+37,North Carolina,0.6148498
+38,North Dakota,0.59863365
+39,Ohio,0.60700387
+40,Oklahoma,0.5831668
+41,Oregon,0.5976392
+42,Pennsylvania,0.6179883
+44,Rhode Island,0.58533466
+45,South Carolina,0.59378904
+46,South Dakota,0.6033665
+47,Tennessee,0.60331404
+48,Texas,0.6045305
+49,Utah,0.5990624
+50,Vermont,0.59525084
+51,Virginia,0.5896458
+53,Washington,0.57923263
+54,West Virginia,0.5865284
+55,Wisconsin,0.595163
+56,Wyoming,0.58507025
