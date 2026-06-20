@@ -1,6 +1,6 @@
 # macOS
 .DS_Store
 **/.DS_Store
-CES/data_raw/CCES22_Common_OUTPUT_vv_topost.csv
-CES/data_raw/CCES22_Common_OUTPUT_vv_topost.dta
+data/data_raw/CCES22_Common_OUTPUT_vv_topost.csv
+data/data_raw/CCES22_Common_OUTPUT_vv_topost.dta
 CLAUDE.md
